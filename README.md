@@ -36,13 +36,13 @@ public function index(){
     $this->authorize($this->slug.__FUNCTION__);
     $elementos = \App\Models\Elementos::paginate(30);
     return  view('modulo.elementos.index',compact('elementos'))->
-            with('pestanias', $this->pestanias);
+            with('parametros', $this->parametros);
 }
 ```
 
 
 #### Pestañas 
-Para hacer uso de las pestañas usamos el metodo pestanias()
+Usamos el metodo pestanias()
 ```php
 {!! Builder::pestanias($pestanias) !!}
 ```
@@ -56,9 +56,15 @@ $pestanias = [
             'parent' => 'Reportes',
             'children' =>[
                 ['route'=>'element.report.by-module','name'=>'por Modulo'],
-                ['route'=>'element.report.by-year','name'=>'por Gestion']
+                ['route'=>'element.report.by-year','name'=>'por Año']
             ]
         ],
     ];
 ```
 Mientras exista la clave parent se identificara como pestaña desplegable
+
+#### Tablas de datos
+Usamos el metodo table()
+```php
+{!! Builder::table($parametros) !!}
+```
