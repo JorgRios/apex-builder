@@ -9,6 +9,7 @@ class BuilderForm
 {
     public function __construct(){
         $this->Headers = new Headers();
+        $this->Bodys = new Bodys();
     }
 
     public function __call($name , $arguments = null){
@@ -21,7 +22,9 @@ class BuilderForm
         /**
          * Buscamos en los bodys
          */
-
+        if (method_exists($this->Bodys, $name)) {
+            return $this->Bodys->$name($arguments);
+        } 
         /**
          * Buscamos en los footers
          */
